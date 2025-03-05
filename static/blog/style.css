@@ -790,6 +790,13 @@ h5 {
     transform: scale(1.2)
 }
 
+.fc .fc-daygrid-event {
+    background-color: #333; /* Tło wydarzenia */
+    color: #fff; /* Kolor tekstu */
+    border: 1px solid #666;
+}
+
+
 
 @media (min-width:1200px) {
     .map {

@@ -18,7 +18,7 @@ class TourImageInline(admin.TabularInline):
 class TourAdminForm(forms.ModelForm):
     class Meta:
         model = Tour
-        fields = '__all__'  # Lub wylistuj konkretne pola, jeśli nie chcesz edytować wszystkich
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

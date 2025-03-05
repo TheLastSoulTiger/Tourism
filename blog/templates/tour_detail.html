@@ -98,8 +98,25 @@
                     <p><strong>Место отправления:</strong> {{ tour.starting_point }}</p>
                 </div>
                 <h4>Доступные даты</h4>
-                <div id="yandex-calendar">
+                <div id="calendar"></div>
                     <p>Здесь будет отображаться календарь с доступными датами.</p>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var calendarEl = document.getElementById('calendar');
+                            var calendar = new FullCalendar.Calendar(calendarEl, {
+                                initialView: 'dayGridMonth',
+                                locale: 'ru',              // Ustawienie języka (np. rosyjski)
+                                height: 'auto',           // Automatyczna wysokość
+                                events: {{ events|safe }}, // Wstawiamy listę eventów w formacie JSON
+                                headerToolbar: {
+                                    left: 'prev,next today',
+                                    center: 'title',
+                                    right: 'dayGridMonth'
+                                },
+                            });
+                            calendar.render();
+                        });
+                        </script>
                 </div>
             </div>
         </div>

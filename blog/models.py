@@ -39,7 +39,7 @@ class Tour(models.Model):
     organizational_details = RichTextField(blank=True, null=True)
     available_dates = models.JSONField(default=list, blank=True)
     additional_fees = RichTextField(blank=True, null=True)
-    tour_type = models.CharField(max_length=10, choices=TOUR_TYPE_CHOICES, default='other')  # Usunięto Tag
+    tour_type = models.CharField(max_length=10, choices=TOUR_TYPE_CHOICES, default='other') 
     included_in_price = RichTextField(blank=True, null=True)
     extra_charges = RichTextField(blank=True, null=True)
     notes = RichTextField(blank=True, null=True)
@@ -51,7 +51,7 @@ class Tour(models.Model):
 class TourForm(forms.ModelForm):
     class Meta:
         model = Tour
-        fields = ['title', 'short_description', 'tour_type']  # Dodane pole tour_type do formularza
+        fields = ['title', 'short_description', 'tour_type']
         widgets = {
             'short_description': forms.TextInput(attrs={'maxlength': '100'}),
         }
