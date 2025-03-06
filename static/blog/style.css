@@ -145,6 +145,7 @@ header {
 }
 
 .header {
+    position: relative;
     background: linear-gradient(45deg, #1e1e1e, #333);
     color: #fff;
     border-bottom: 5px solid #444;
@@ -380,7 +381,7 @@ h5 {
 
 .map-container,
 .nav-menu {
-    box-shadow: inset 0px -5px 6px 0px #00000054;
+    box-shadow: 0px 16px 18px 0px #33333300;
 }
 
 .tour-card .tour-title {
@@ -444,9 +445,8 @@ h5 {
 .nav-menu {
     list-style: none;
     padding: 0;
-    margin: 0;
     justify-content: center;
-    background-color: #33333324;;
+    background-color: #33333300;
     border-radius: 4px
 }
 
@@ -553,14 +553,8 @@ h5 {
 }
 
 .carousel-inner img {
-    height: 100vh;
+    height: 40vh;
     object-fit: cover;
-}
-
-.carousel-item img {
-    width: 100vw; /* Pełna szerokość widoczna */
-    height: 70vh; /* Dostosowanie wysokości */
-    background: linear-gradient(180deg, #00000063 100%, #0000000c 69%, #00000000 100%);
 }
 
 .carousel-container {

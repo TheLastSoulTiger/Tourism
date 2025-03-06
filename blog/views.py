@@ -20,32 +20,18 @@ def post_detail(request, id):
 
 
 def home(request):
-    # Pobieranie postów
     posts = Post.objects.order_by('-created_date')[:3]
-    
-    # Pobieranie ID wybranego tagu z zapytania GET
     tag_id = request.GET.get('tag')
     tours = Tour.objects.filter(tags__id=tag_id) if tag_id else Tour.objects.all()
-    
-    # Filtrowanie wycieczek na podstawie wybranego tagu, jeśli wybrano tag
-    if tag_id:
-        tours = Tour.objects.filter(tags__id=tag_id)
-    else:
-        tours = Tour.objects.all()
-    
-    # Pobieranie wszystkich tagów do formularza
     tags = Tag.objects.all()
-    
     header_carousel_images = HeaderCarouselImage.objects.all()
 
-    # Przekazywanie postów, wycieczek oraz tagów do szablonu
     context = {
         'posts': posts,
         'tours': tours,
         'tags': tags,
         'header_carousel_images': header_carousel_images,
     }
-
     return render(request, 'blog/home.html', context)
 
    
@@ -121,14 +107,17 @@ def contact(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
-            send_mail(
-                f'Kontakt od {name}',
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                [settings.CONTACT_EMAIL],
-                fail_silently=False,
-            )
-            return render(request, 'blog/contact_success.html', {'name': name})
+            try:
+                send_mail(
+                    f'Контакт от {name}',
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.CONTACT_EMAIL],
+                    fail_silently=False,
+                )
+                return render(request, 'blog/contact_success.html', {'name': name})
+            except BadHeaderError:
+                return render(request, 'blog/contact_error.html', {'error': 'Invalid header found.'})
     else:
         form = ContactForm()
     return render(request, 'blog/contact.html', {'form': form})
@@ -136,4 +125,9 @@ def contact(request):
 
 def tour_detail(request, tour_id):
     tour = get_object_or_404(Tour, id=tour_id)
-    return render(request, 'tour_detail.html', {'tour': tour})
+    reviews = tour.reviews.all()
+    paginator = Paginator(reviews, 5)  # 5 recenzji na stronę
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'tour_detail.html', {'tour': tour, 'page_obj': page_obj})

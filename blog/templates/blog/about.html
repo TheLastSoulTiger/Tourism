@@ -1,33 +1,63 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>О нас - Блог Калининград</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="description" content="Профессиональный гид с многолетним опытом. Экскурсии на автомобиле, велосипеде, каяке и пешком. Откройте для себя Калининградскую область.">
+    <meta name="keywords" content="гид, экскурсии, туризм, Калининград">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
 </head>
 <body class="bg-dark text-light">
-    <div class="container">
-        <h1 class="mt-5">О нас</h1>
-        <nav>
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'home' %}">Главная</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'post_list' %}">Посты</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="{% url 'about' %}">О нас</a></li>
-            </ul>
+    <!-- Nagłówek -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="title">Личный гид</h1>
+            <p class="subtitle">Откройте для себя удивительные места Калининградской области.</p>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">Блог Калининград</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Главная</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'post_list' %}">Новости</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'about' %}">Обо мне</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Контакт</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
- <h2 class="text-center mb-4">О гиде</h2>
-        <p>
-          Я профессиональный гид с многолетним опытом, предлагающий широкий спектр туристических услуг,
-          которые я подстраиваю под ваши индивидуальные потребности. Хотите исследовать местность пешком, на велосипеде, каяке или на автомобиле? Я помогу вам получить незабываемые впечатления.
-        </p>
-        <p>
-          В моем арсенале есть как популярные маршруты, так и скрытые жемчужины, которые я знаю как свои пять пальцев. Благодаря гибкому подходу, я всегда готов адаптировать маршрут под ваши предпочтения, чтобы сделать ваше путешествие уникальным и запоминающимся.
-        </p>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </header>
+
+    <!-- Sekcja "О нас" -->
+    <section class="container mt-5">
+        <h2 class="text-center mb-4">О гиде</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <p class="lead">
+                    Я профессиональный гид с многолетним опытом, предлагающий широкий спектр туристических услуг, адаптированных под ваши индивидуальные потребности. Хотите исследовать местность пешком, на велосипеде, каяке или на автомобиле? Я помогу вам получить незабываемые впечатления.
+                </p>
+                <p>
+                    В моем арсенале есть как популярные маршруты, так и скрытые жемчужины региона. Благодаря гибкому подходу, я всегда готов адаптировать маршрут под ваши предпочтения, чтобы сделать ваше путешествие уникальным и запоминающимся.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stopka -->
+    <footer class="footer bg-dark py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Блог Калининград. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Skrypty Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
